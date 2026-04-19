@@ -76,14 +76,18 @@ def _synth_runs(n_runs: int = 15) -> list[SuiteRunResult]:
 
 
 def test_end_to_end_pipeline(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
-    # Redirect output dirs into tmp_path
-    from config import settings as settings_mod
+    # Redirect output dirs into tmp_path by patching the Settings class properties.
+    # `settings` is the module-level singleton; patching its class affects all reads.
+    from config.settings import Settings, settings as settings_obj
 
-    monkeypatch.setattr(settings_mod.settings.__class__, "output_dir", property(lambda self: tmp_path / "outputs"))
-    monkeypatch.setattr(settings_mod.settings.__class__, "raw_dir", property(lambda self: tmp_path / "outputs" / "raw"))
-    monkeypatch.setattr(settings_mod.settings.__class__, "summary_dir", property(lambda self: tmp_path / "outputs" / "summary"))
-    monkeypatch.setattr(settings_mod.settings.__class__, "charts_dir", property(lambda self: tmp_path / "outputs" / "charts"))
-    monkeypatch.setattr(settings_mod.settings.__class__, "html_report_path", property(lambda self: tmp_path / "outputs" / "report.html"))
+    out = tmp_path / "outputs"
+    monkeypatch.setattr(Settings, "output_dir", property(lambda self: out))
+    monkeypatch.setattr(Settings, "raw_dir", property(lambda self: out / "raw"))
+    monkeypatch.setattr(Settings, "summary_dir", property(lambda self: out / "summary"))
+    monkeypatch.setattr(Settings, "charts_dir", property(lambda self: out / "charts"))
+    monkeypatch.setattr(Settings, "html_report_path", property(lambda self: out / "report.html"))
+    # Sanity: resolved singleton now points under tmp_path
+    assert settings_obj.output_dir == out
 
     suite_runs = _synth_runs(n_runs=15)
     summary = analyze(suite_runs, pytest_target="demo", top_n=10)

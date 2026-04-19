@@ -57,6 +57,9 @@ class Category(str, Enum):
 class TestCaseResult(BaseModel):
     """Result of a single test case within one pytest run."""
 
+    # Tell pytest not to try to collect this pydantic model as a test class.
+    __test__ = False
+
     model_config = ConfigDict(use_enum_values=False)
 
     nodeid: str
