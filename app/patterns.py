@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from typing import List, Tuple
 
-from .models import AggregatedTestMetrics, Outcome
+from .models import AggregatedTestMetrics
 
 
 PatternResult = Tuple[bool, str]

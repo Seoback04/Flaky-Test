@@ -8,7 +8,7 @@ exercise analyze → report → visualize end-to-end.
 from __future__ import annotations
 
 import random
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 import pytest
@@ -60,7 +60,7 @@ def _synth_runs(n_runs: int = 15) -> list[SuiteRunResult]:
                 err="Request timed out after 30s",
             ),
         ]
-        now = datetime.utcnow()
+        now = datetime.now(tz=timezone.utc)
         runs.append(
             SuiteRunResult(
                 run_index=i,

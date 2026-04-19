@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 
 from app.models import (
     AggregatedTestMetrics,
@@ -31,7 +31,7 @@ def test_testcase_result_defaults() -> None:
 
 
 def test_suite_run_result_counts() -> None:
-    now = datetime.utcnow()
+    now = datetime.now(tz=timezone.utc)
     tc1 = TestCaseResult(nodeid="a", outcome=Outcome.PASSED)
     tc2 = TestCaseResult(nodeid="b", outcome=Outcome.FAILED)
     tc3 = TestCaseResult(nodeid="c", outcome=Outcome.SKIPPED)

@@ -17,7 +17,6 @@ import numpy as np  # noqa: E402
 
 from config.settings import settings  # noqa: E402
 
-from .exceptions import VisualizerError  # noqa: E402
 from .logger import get_logger  # noqa: E402
 from .models import Category, Outcome, ReportSummary, SuiteRunResult  # noqa: E402
 from .utils.file_io import ensure_dir  # noqa: E402

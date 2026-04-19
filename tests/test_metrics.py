@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 
 from app.metrics import (
     _count_transitions,
@@ -14,7 +14,7 @@ from app.models import Outcome, SuiteRunResult, TestCaseResult
 
 
 def _make_run(index: int, results: list[tuple[str, Outcome, float, str | None]]) -> SuiteRunResult:
-    now = datetime.utcnow()
+    now = datetime.now(tz=timezone.utc)
     tc = [
         TestCaseResult(
             nodeid=nid, outcome=oc, duration=dur, run_index=index, error_message=msg

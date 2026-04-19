@@ -7,11 +7,16 @@ these classes to keep the system self-describing.
 
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from enum import Enum
 from typing import List, Optional
 
 from pydantic import BaseModel, Field, ConfigDict
+
+
+def _utcnow() -> datetime:
+    """Timezone-aware UTC now (replaces deprecated ``datetime.utcnow()``)."""
+    return datetime.now(tz=timezone.utc)
 
 
 class Outcome(str, Enum):
@@ -66,7 +71,7 @@ class TestCaseResult(BaseModel):
     outcome: Outcome
     duration: float = 0.0
     run_index: int = 0
-    timestamp: datetime = Field(default_factory=datetime.utcnow)
+    timestamp: datetime = Field(default_factory=_utcnow)
     error_message: Optional[str] = None
     failure_signature: Optional[str] = None  # short, deduplicated error summary
 
@@ -159,7 +164,7 @@ class TestReport(BaseModel):
 class ReportSummary(BaseModel):
     """Top-level suite summary artifact (``summary.json``)."""
 
-    generated_at: datetime = Field(default_factory=datetime.utcnow)
+    generated_at: datetime = Field(default_factory=_utcnow)
     pytest_target: str
     total_runs: int
     total_tests: int
