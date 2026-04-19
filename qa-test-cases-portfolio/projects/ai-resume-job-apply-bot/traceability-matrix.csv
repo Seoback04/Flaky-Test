@@ -1,0 +1,15 @@
+Requirement ID,Requirement Description,Risk Level,Test Scenario IDs,Test Case IDs,Coverage Status,Notes
+REQ-JOBBOT-001,Parse valid resumes in PDF/DOCX/TXT,High,TS-JOBBOT-001,TC-JOBBOT-001;TC-JOBBOT-002;TC-JOBBOT-003,Covered,
+REQ-JOBBOT-002,Reject/handle invalid resume files safely,High,TS-JOBBOT-002,TC-JOBBOT-004;TC-JOBBOT-005;TC-JOBBOT-006,Covered,Includes EP for file formats
+REQ-JOBBOT-003,LLM output must validate schema; no fabricated fields,High,TS-JOBBOT-003,TC-JOBBOT-007;TC-JOBBOT-008,Covered,Null-propagation enforced
+REQ-JOBBOT-004,Detect common form field types,High,TS-JOBBOT-004,TC-JOBBOT-009;TC-JOBBOT-010,Covered,
+REQ-JOBBOT-005,Map profile to fields with confidence scores,High,TS-JOBBOT-005,TC-JOBBOT-011;TC-JOBBOT-012,Covered,BUG-JOBBOT-001 regression added
+REQ-JOBBOT-006,Autofill via type-appropriate interactions,High,TS-JOBBOT-006,TC-JOBBOT-013;TC-JOBBOT-014,Covered,
+REQ-JOBBOT-007,Block submit on low-confidence mappings,High,TS-JOBBOT-007,TC-JOBBOT-015;TC-JOBBOT-016,Covered,
+REQ-JOBBOT-008,Block submit on missing required fields,High,TS-JOBBOT-008,TC-JOBBOT-017,Covered,
+REQ-JOBBOT-009,File upload works reliably,High,TS-JOBBOT-009,TC-JOBBOT-018,Covered,
+REQ-JOBBOT-010,--dry-run prevents any network submission,High,TS-JOBBOT-010,TC-JOBBOT-019,Partial,BUG-JOBBOT-003 open
+REQ-JOBBOT-011,Capture pre/post-submit screenshots,Medium,TS-JOBBOT-011,TC-JOBBOT-020,Covered,
+REQ-JOBBOT-012,Mask PII in all logs,High,TS-JOBBOT-012,TC-JOBBOT-021,Covered,BUG-JOBBOT-002 fixed
+REQ-JOBBOT-013,Handle malformed LLM responses with retry + actionable error,High,TS-JOBBOT-013,TC-JOBBOT-022,Covered,
+REQ-JOBBOT-014,Handle dynamic fields / iframes / CAPTCHA,Medium,TS-JOBBOT-014,TC-JOBBOT-023;TC-JOBBOT-024,Covered,CAPTCHA triggers graceful abort

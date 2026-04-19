@@ -1,0 +1,14 @@
+Requirement ID,Requirement Description,Risk Level,Test Scenario IDs,Test Case IDs,Coverage Status,Notes
+REQ-FLAKY-001,Classify tests passing in all runs as stable_pass,High,TS-FLAKY-001,TC-FLAKY-001,Covered,
+REQ-FLAKY-002,Classify tests failing in all runs (non-infra) as stable_fail,High,TS-FLAKY-002,TC-FLAKY-002,Covered,
+REQ-FLAKY-003,Classify tests with mixed outcomes (non-infra dominated) as flaky,High,TS-FLAKY-003,TC-FLAKY-003;TC-FLAKY-004,Covered,Includes boundary case
+REQ-FLAKY-004,Classify infra-keyword-dominated failures as infra_suspect,High,TS-FLAKY-004,TC-FLAKY-005;TC-FLAKY-006,Covered,Both all-fail and mixed-outcome variants
+REQ-FLAKY-005,Compute flakiness_score = min(pass,fail)/executed,High,TS-FLAKY-005,TC-FLAKY-007;TC-FLAKY-008;TC-FLAKY-009,Covered,BVA + divide-by-zero guard
+REQ-FLAKY-006,Count transitions only on pass<->fail state changes; ignore skipped,High,TS-FLAKY-006,TC-FLAKY-010;TC-FLAKY-011,Covered,
+REQ-FLAKY-007,Compute duration avg + stddev per test,Medium,TS-FLAKY-007,TC-FLAKY-012;TC-FLAKY-013,Covered,Pattern detector verified
+REQ-FLAKY-008,Emit JSON + CSV summary artifacts,High,TS-FLAKY-008,TC-FLAKY-014;TC-FLAKY-015,Covered,
+REQ-FLAKY-009,Emit 5 matplotlib PNG charts,Medium,TS-FLAKY-009,TC-FLAKY-016;TC-FLAKY-017,Partial,TC-FLAKY-017 blocked pending fix of BUG-FLAKY-003
+REQ-FLAKY-010,Handle malformed / missing JSON reports gracefully,High,TS-FLAKY-010,TC-FLAKY-018;TC-FLAKY-019,Covered,BUG-FLAKY-002 fixed
+REQ-FLAKY-011,Continue execution after individual run failures,High,TS-FLAKY-011,TC-FLAKY-020,Partial,Automation harness not yet built
+REQ-FLAKY-012,Reject out-of-range CLI arguments with clear errors,Medium,TS-FLAKY-012,TC-FLAKY-021;TC-FLAKY-022,Covered,
+REQ-FLAKY-013,Create output directory tree on first run,High,TS-FLAKY-013,TC-FLAKY-023,Covered,

@@ -1,0 +1,21 @@
+Test Case ID,Module,Feature,Title,Preconditions,Test Steps,Test Data,Expected Result,Actual Result,Priority,Severity,Type,Automation Candidate,Status,Notes
+TC-VISREG-001,Loader,PNG,Load a valid PNG baseline,fixture PNG present,"1) Load baseline.png","baseline.png (1024x768)",Image loaded; size read matches file,,High,S2,functional,Yes,Pass,
+TC-VISREG-002,Loader,JPG,Load a valid JPG baseline,fixture JPG present,"1) Load baseline.jpg","baseline.jpg",Image loaded,,High,S3,functional,Yes,Pass,
+TC-VISREG-003,Loader,WebP,Load a valid WebP baseline,fixture WebP present,"1) Load baseline.webp","baseline.webp",Image loaded,,Medium,S3,functional,Yes,Pass,
+TC-VISREG-004,Loader,Target,Load target image with identical dimensions,fixture target present,"1) Load target.png","same size",Image loaded,,High,S2,functional,Yes,Pass,
+TC-VISREG-005,Loader,Missing Target,Missing target file raises clean error,,"1) Point to missing.png","missing.png",Exit code != 0; error 'Target file not found: missing.png',,High,S2,negative,Yes,Pass,
+TC-VISREG-006,Diff,Identical Pair,Identical images produce empty diff and pass,baseline==target,"1) Run compare; 2) Check report","identical images",report.changed_ratio=0.0; decision='pass'; diff.png all zeros/transparent,,High,S2,functional,Yes,Pass,
+TC-VISREG-007,Diff,Small Change,Single-pixel diff produces 1/total ratio,baseline differs from target by 1 pixel,"1) Run compare","1 pixel changed out of 786432",report.changed_ratio ≈ 1.27e-6; decision depends on threshold,,High,S2,boundary,Yes,Pass,
+TC-VISREG-008,Threshold,Exact Match,threshold=0.0 fails on any pixel difference,baseline differs by 1 pixel,"1) Run compare --threshold 0.0","threshold=0.0",decision='fail',,High,S2,boundary,Yes,Pass,
+TC-VISREG-009,Threshold,Loose,threshold=0.5 passes up to 50% diff,baseline differs by 20%,"1) Run compare --threshold 0.5","threshold=0.5; changed=0.2",decision='pass',,High,S2,functional,Yes,Pass,
+TC-VISREG-010,Threshold,Always Pass,threshold=1.0 always passes,baseline differs by 100%,"1) Run compare --threshold 1.0","threshold=1.0",decision='pass',,High,S2,boundary,Yes,Pass,
+TC-VISREG-011,Ignored Regions,Mask Excludes Pixels,Changes inside ignored rect excluded from diff,baseline+target differ only inside 10x10 ignored rect,"1) Run compare --ignore 100,100,110,110","ignore rect covers the diff",report.changed_ratio=0; decision='pass',,High,S1,functional,Yes,Pass,"Safety: false negatives would be bad here; test verified with golden fixtures"
+TC-VISREG-012,Ignored Regions,Multi-Rect,Multiple ignored rectangles handled,diff outside all rects,"1) Run compare --ignore '0,0,50,50;100,100,150,150'","two rects",diff counted outside both rects,,Medium,S3,functional,Yes,Pass,
+TC-VISREG-013,Diff Rendering,Highlight,Diff PNG highlights only changed regions,baseline differs in top-left,"1) Run compare; 2) Open diff.png","top-left diff",Top-left pixels highlighted (red); rest unchanged,,Medium,S3,functional,Yes,Pass,
+TC-VISREG-014,Decision,Fail Path,changed_ratio > threshold → fail,changed=0.05 > threshold=0.01,"1) Run compare","ratio=0.05;threshold=0.01",decision='fail'; exit code != 0,,High,S2,functional,Yes,Pass,
+TC-VISREG-015,Decision,Pass Path,changed_ratio <= threshold → pass,changed=0.005 <= threshold=0.01,"1) Run compare","ratio=0.005;threshold=0.01",decision='pass'; exit code 0,,High,S2,functional,Yes,Pass,
+TC-VISREG-016,Loader,Unsupported Format,SVG rejected with clear error,,"1) Provide baseline.svg","baseline.svg",Exit != 0; error 'Unsupported format: svg',,High,S2,negative,Yes,Pass,
+TC-VISREG-017,Error,Missing Baseline,Missing baseline is never silent pass,,"1) Provide missing baseline","missing baseline",Exit != 0; error 'Baseline file not found',,High,S1,negative,Yes,Pass,"High severity: silent pass = false negative"
+TC-VISREG-018,Batch,Manifest Run,Manifest with 3 pairs produces 3 reports,manifest.yaml has 3 entries,"1) Run batch --manifest manifest.yaml","3 pairs",3 report.json files produced; exit code reflects any failure,,Medium,S3,functional,Yes,Pass,
+TC-VISREG-019,CLI,Validation,Reject --threshold 1.5,,"1) CLI: compare --threshold 1.5","threshold=1.5",Non-zero exit; clear message,,Medium,S3,negative,Yes,Pass,
+TC-VISREG-020,CLI,Validation,Reject --threshold -0.1,,"1) CLI: compare --threshold -0.1","threshold=-0.1",Non-zero exit; clear message,,Medium,S3,negative,Yes,Pass,
