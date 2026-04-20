@@ -1,0 +1,2 @@
+Test Case ID,Module,Feature,Title,Preconditions,Test Steps,Test Data,Expected Result,Actual Result,Priority,Severity,Type,Automation Candidate,Status,Notes
+TC-XXX-001,<module>,<feature>,<one-line title>,<prereq state>,"1) Do X; 2) Do Y; 3) Observe Z",<input values>,<expected observable outcome>,,High|Medium|Low,S1|S2|S3|S4,functional|regression|negative|boundary|edge|error-path|usability|reliability|performance|security|exploratory,Yes|No|Later,Not Run|Pass|Fail|Blocked|N/A,<links / bug IDs / comments>

@@ -1,0 +1,12 @@
+Requirement ID,Requirement Description,Risk Level,Test Scenario IDs,Test Case IDs,Coverage Status,Notes
+REQ-VISREG-001,Load baseline images in PNG/JPG/WebP,High,TS-VISREG-001,TC-VISREG-001;TC-VISREG-002;TC-VISREG-003,Covered,BUG-VISREG-002 open on JPG EXIF rotation
+REQ-VISREG-002,Load target images; handle missing file,High,TS-VISREG-002,TC-VISREG-004;TC-VISREG-005,Covered,
+REQ-VISREG-003,Produce diff image with highlighted changed regions,High,TS-VISREG-003,TC-VISREG-006;TC-VISREG-007,Covered,
+REQ-VISREG-004,Threshold decides pass/fail,High,TS-VISREG-004,TC-VISREG-008;TC-VISREG-009;TC-VISREG-010,Covered,BVA at 0.0 and 1.0
+REQ-VISREG-005,Ignored regions excluded from diff,High,TS-VISREG-005,TC-VISREG-011;TC-VISREG-012,Covered,BUG-VISREG-001 fixed
+REQ-VISREG-006,Diff image highlights only changed pixels,Medium,TS-VISREG-006,TC-VISREG-013,Covered,
+REQ-VISREG-007,Decision reflects changed_ratio vs threshold,High,TS-VISREG-007,TC-VISREG-014;TC-VISREG-015,Covered,
+REQ-VISREG-008,Unsupported formats rejected with clear error,High,TS-VISREG-008,TC-VISREG-016,Covered,
+REQ-VISREG-009,Missing file produces actionable error (never silent pass),High,TS-VISREG-009,TC-VISREG-017,Covered,High severity safety
+REQ-VISREG-010,Batch manifest run produces per-pair reports,Medium,TS-VISREG-010,TC-VISREG-018,Covered,
+REQ-VISREG-011,CLI argument validation,Medium,TS-VISREG-011,TC-VISREG-019;TC-VISREG-020,Covered,

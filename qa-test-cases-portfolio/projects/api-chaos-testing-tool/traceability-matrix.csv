@@ -1,0 +1,12 @@
+Requirement ID,Requirement Description,Risk Level,Test Scenario IDs,Test Case IDs,Coverage Status,Notes
+REQ-API-001,Generate and send schema-valid requests,High,TS-API-001,TC-API-001;TC-API-002,Covered,
+REQ-API-002,Invalid payloads must produce 4xx not 5xx,High,TS-API-002,TC-API-003;TC-API-004;TC-API-005,Covered,BUG-API-001 filed against server
+REQ-API-003,Null/missing required fields → 400 with field-level error,High,TS-API-003,TC-API-006;TC-API-007,Covered,
+REQ-API-004,Rate limit behavior honored,Medium,TS-API-004,TC-API-008,Covered,
+REQ-API-005,Timeout handling correct and deterministic,High,TS-API-005,TC-API-009,Partial,BUG-API-003 open on Windows
+REQ-API-006,Server errors captured and classified,High,TS-API-006,TC-API-010,Covered,
+REQ-API-007,Latency measurement accurate within 10 ms,Medium,TS-API-007,TC-API-011,Covered,
+REQ-API-008,Result logger emits one NDJSON line per request with required fields,High,TS-API-008,TC-API-012,Covered,
+REQ-API-009,Stability score deterministic and reproducible,High,TS-API-009,TC-API-013;TC-API-014,Covered,BUG-API-002 fixed
+REQ-API-010,Malformed OpenAPI produces clean actionable error,High,TS-API-010,TC-API-015,Covered,
+REQ-API-011,CLI arg validation,Medium,TS-API-011,TC-API-016;TC-API-017,Covered,

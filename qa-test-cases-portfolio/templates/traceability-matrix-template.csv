@@ -1,0 +1,2 @@
+Requirement ID,Requirement Description,Risk Level,Test Scenario IDs,Test Case IDs,Coverage Status,Notes
+REQ-XXX-001,<short requirement description>,High|Medium|Low,TS-XXX-001;TS-XXX-002,TC-XXX-001;TC-XXX-002;TC-XXX-003,Covered|Partial|Not Covered,<optional notes>

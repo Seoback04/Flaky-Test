@@ -1,0 +1,19 @@
+# macOS / Windows / editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temp / export artifacts (test runs may produce these locally)
+_scratch/
+_drafts/
+_exports/
+*.xlsx~
+*.tmp
+*.bak
+
+# Jupyter / Python (shared-machine safety)
+__pycache__/
+.ipynb_checkpoints/
