@@ -63,3 +63,5 @@ _Owner_: QA Portfolio &nbsp;|&nbsp; _Generated_: 2026-03-20 &nbsp;|&nbsp; _Build
 | QA Owner | QA Portfolio | 2026-03-20 |
 | Tech Lead | — | — |
 | PM | — | — |
+## 11. Verification Evidence
+The latest end-to-end verification pass (env install, 33 / 33 self-tests green, 15-run demo, all artifacts produced, schema check) is recorded at the repository root in [`VERIFICATION.md`](../../../VERIFICATION.md). That file is regenerated on every release candidate and committed alongside the change set that produced it.
